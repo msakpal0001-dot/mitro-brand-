@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Digital Pranav — Social Media Management, Banners & Reels</title>
+  <meta name="description" content="Digital Pranav — End-to-end social media management, banner design, and high-retention reels." />
+  <style>
+    :root{
+      --bg: #f7f7fb;
+      --card: #ffffff;
+      --text: #0b1220;
+      --muted: #647084;
+      --line: #e8e9ef;
+      --black: #0e0f14;
+      --brand1: #2a6cf6; /* blue */
+      --brand2: #1b3f9b; /* dark indigo */
+      --ring: rgba(17,17,17,.08);
+      --shadow: 0 8px 30px rgba(17, 19, 23, .08);
+      --radius-xl: 16px;
+      --radius-2xl: 20px;
+      --radius-3xl: 24px;
+      --maxw: 1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+      color:var(--text);
+      background: linear-gradient(to bottom, #fff, var(--bg));
+    }
+    a{color:inherit}
+    .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+    /* Navbar */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: saturate(180%) blur(8px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px}
+    .brand-badge{
+      width:36px; height:36px; border-radius:14px; color:#fff; background:#000;
+      display:grid; place-items:center;
+    }
+    .nav-links{display:flex; gap:24px; color:#364152; font-size:14px}
+    .nav-links a{opacity:.9; text-decoration:none}
+    .nav-links a:hover{opacity:1}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      font-weight:700; text-decoration:none; cursor:pointer;
+      border-radius:16px; padding:12px 18px; font-size:15px; border:1px solid transparent; transition:.2s ease;
+    }
+    .btn-primary{background:#000; color:#fff;}
+    .btn-primary:hover{opacity:.9}
+    .btn-ghost{border-color:#d6d9e2; background:#fff}
+    .btn-ghost:hover{background:#f4f6fb}
+    /* Sections */
+    section{padding:56px 0}
+    .hero{padding:72px 0 64px}
+    .grid{display:grid; gap:24px}
+    .grid-2{grid-template-columns:1fr}
+    @media (min-width: 960px){ .grid-2{grid-template-columns: 1.1fr .9fr} }
+    h1{font-size: clamp(34px, 5vw, 56px); line-height:1.05; margin:10px 0 0; font-weight:900}
+    .lead{font-size:18px; color:var(--muted); max-width:640px; margin-top:16px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; font-weight:800; letter-spacing:.02em; text-transform:none;
+      padding:6px 10px; border-radius:999px; border:1px solid var(--line);
+    }
+    /* Card */
+    .card{
+      background:var(--card); border:1px solid #eef0f4; border-radius:var(--radius-2xl);
+      box-shadow: var(--shadow);
+    }
+    .card.pad{padding:18px}
+    /* Reel grid mock */
+    .reels{position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; background: #0b1220;}
+    .reels-grid{position:absolute; inset:0; display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; padding:8px}
+    .tile{
+      position:relative; border-radius:12px; overflow:hidden;
+      background: linear-gradient(135deg, #3c4155, #171b27);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+      transform: translateY(10px); opacity:0;
+      animation: rise .7s ease forwards;
+    }
+    .tile:nth-child(odd){animation-delay:.06s}
+    .tile:nth-child(2n){animation-delay:.12s}
+    .tile:nth-child(3n){animation-delay:.18s}
+    .grain{position:absolute; inset:0; opacity:.35;
+      background-image: radial-gradient(circle at 30% 20%, #ffffff 1.5px, transparent 2px);
+      background-size: 22px 22px;
+    }
+    .tile-time{
+      position:absolute; left:8px; right:8px; bottom:6px; font-size:10px; color:#e7eaf1; display:flex; align-items:center; gap:4px;
+      text-shadow:0 1px 0 rgba(0,0,0,.8);
+    }
+    .badge{
+      position:absolute; left:12px; bottom:12px; font-size:11px; font-weight:800; letter-spacing:.08em; color:#d9def0;
+      display:inline-flex; align-items:center; gap:6px;
+    }
+    @keyframes rise{to{transform:translateY(0); opacity:1}}
+    /* Services */
+    .services{display:grid; gap:18px}
+    @media (min-width: 680px){ .services{grid-template-columns: repeat(2, 1fr)} }
+    @media (min-width: 960px){ .services{grid-template-columns: repeat(4, 1fr)} }
+    .service .iconwrap{
+      width:44px; height:44px; border-radius:14px; background:#000; color:#fff; display:grid; place-items:center; margin-bottom:10px;
+    }
+    .service h3{margin:6px 0; font-size:18px}
+    .service p{margin:6px 0 10px; color:var(--muted); font-size:14px}
+    .ul{margin:0; padding:0; list-style:none; display:grid; gap:8px; font-size:14px; color:#3b4456}
+    .ul li{display:flex; gap:8px; align-items:flex-start}
+    /* Work grid */
+    .work-grid{display:grid; gap:16px}
+    @media (min-width: 700px){ .work-grid{grid-template-columns: repeat(2, 1fr)} }
+    @media (min-width: 1024px){ .work-grid{grid-template-columns: repeat(3, 1fr)} }
+    .work-tile{aspect-ratio:4/3; display:grid; place-items:center; background: linear-gradient(135deg, #f4f6ff, #e9eefc); color:#4a5568; font-weight:700; border-radius:14px}
+    /* Process */
+    .process{display:grid; gap:22px}
+    @media (min-width: 900px){ .process{grid-template-columns: repeat(4, 1fr)} }
+    .step .num{width:40px; height:40px; border-radius:12px; background:#000; color:#fff; display:grid; place-items:center; font-weight:900}
+    .step h4{margin:10px 0 6px}
+    .step p{color:var(--muted); font-size:14px}
+    /* Pricing */
+    .pricing{display:grid; gap:18px}
+    @media (min-width: 960px){ .pricing{grid-template-columns: repeat(3, 1fr)} }
+    .plan{padding:22px; border-radius:18px; border:1px solid #e8e9ef; background:#fff; box-shadow: var(--shadow); transition:.2s}
+    .plan.selected{outline: 3px solid #000}
+    .plan-header{display:flex; align-items:start; justify-content:space-between; gap:12px}
+    .price{margin-top:10px; font-size:28px; font-weight:900}
+    .plan .ul{margin-top:10px}
+    /* CTA strip */
+    .cta-strip{display:flex; gap:18px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+    /* Contact */
+    .contact-grid{display:grid; gap:18px}
+    @media (min-width: 980px){ .contact-grid{grid-template-columns: 1.1fr .9fr} }
+    .input, .select, .textarea{
+      width:100%; border:1px solid #d8dbe6; background:#fff; border-radius:14px; padding:12px 14px; font-size:15px; outline:none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .input:focus, .select:focus, .textarea:focus{box-shadow: 0 0 0 3px var(--ring); border-color:#bbc3d9}
+    details{padding:12px 0}
+    summary{cursor:pointer; font-weight:700}
+    .muted{color:var(--muted)}
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform: translateY(14px); transition: .5s ease}
+    .reveal.show{opacity:1; transform:none}
+    /* Footer */
+    footer{border-top:1px solid var(--line); color:#5e6a82; font-size:14px}
+    /* Helper rows */
+    .row{display:flex; gap:12px; flex-wrap:wrap}
+    .socials{display:flex; gap:16px; color:#5a657a; font-size:14px}
+    /* Small pill nav link on hero */
+    .hero-pills{display:flex; gap:16px; color:#6c7589; align-items:center; margin-top:14px}
+    /* Utility */
+    .space-top{margin-top:10px}
+  </style>
+</head>
+<body>
+
+<!-- SVG sprite (inline icons) -->
+<svg style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Sparkles -->
+    <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3l1.8 3.7L18 8.5l-4.2 1.1L12 13l-1.8-3.4L6 8.5l4.2-1.8L12 3z"/>
+      <path d="M20 3.5l.9 1.8L22.7 6l-1.8.7-.9 1.8-.9-1.8L17.3 6l1.8-.7.9-1.8zM4 14.5l.9 1.8L6.7 17l-1.8.7-.9 1.8-.9-1.8L1.3 17l1.8-.7.9-1.8z"/>
+    </symbol>
+    <!-- Play -->
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M8 5v14l11-7-11-7z"/>
+    </symbol>
+    <!-- Image -->
+    <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <circle cx="8.5" cy="8.5" r="1.8"/>
+      <path d="M21 15l-5-5-11 11"/>
+    </symbol>
+    <!-- Megaphone -->
+    <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11v2a4 4 0 0 0 4 4h1"/>
+      <path d="M11 6v12"/>
+      <path d="M21 11a8 8 0 0 1-8 8h-2V3h2a8 8 0 0 1 8 8z"/>
+    </symbol>
+    <!-- Check -->
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6L9 17l-5-5"/>
+    </symbol>
+    <!-- Phone -->
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 5.2 2 2 0 0 1 4.11 3h3a2 2 0 0 1 2 1.72c.12.89.31 1.76.57 2.59a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l1.5-1.14a2 2 0 0 1 2.11-.45c.83.26 1.7.45 2.59.57A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <!-- Mail -->
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+      <path d="M22 6l-10 7L2 6"/>
+    </symbol>
+    <!-- Instagram, Facebook, X(Twitter), YouTube -->
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="1.2"/>
+    </symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor"><path d="M13 11h3.5l-.5 4H13v9h-4v-9H7v-4h2V8.5C9 6 10.5 4 14.2 4h3.2v4h-2.7c-1 0-1.7.5-1.7 1.6V11z"/></symbol>
+    <symbol id="i-twitterx" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h3.5L13 12l6.5-9H23l-8.2 11.2L22.6 21H19l-6-7.5L7 21H3.4l7.8-10.8L3 3z"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3-.4-4.4A3 3 0 0 0 21 5.1C19.6 4.7 12 4.7 12 4.7s-7.6 0-9 .4A3 3 0 0 0 1.4 7.6C1 9 1 12 1 12s0 3 .4 4.4A3 3 0 0 0 3 18.9c1.4.4 9 .4 9 .4s7.6 0 9-.4a3 3 0 0 0 1.6-2.5c.4-1.4.4-4.4.4-4.4zM10 15.5v-7l6 3.5-6 3.5z"/></symbol>
+    <!-- ChevronRight & ArrowRight -->
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18l6-6-6-6"/>
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 5l7 7-7 7"/>
+    </symbol>
+  </defs></svg>
+
+<!-- NAVBAR -->
+<header class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-badge" aria-hidden="true">
+        <svg width="18" height="18"><use href="#i-sparkles"/></svg>
+      </div>
+      <span>Digital Pranav</span>
+    </div>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="row">
+      <a class="btn btn-ghost" href="https://wa.me/919552489841?text=Hi%20Team%20Digital%20Pranav%2C%20I%27m%20interested%20in%20social%20media%20management." target="_blank" rel="noopener">
+        <svg width="16" height="16"><use href="#i-chevron-right"/></svg> WhatsApp
+      </a>
+      <a class="btn btn-primary" href="#contact">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container grid grid-2">
+    <div class="reveal">
+      <span class="pill"><svg width="14" height="14"><use href="#i-sparkles"/></svg> Socials • Banners • Reels</span>
+      <h1>We manage your socials. You grow.</h1>
+      <p class="lead">End-to-end social media management, banner design, and high-retention reels.</p>
+      <div class="row" style="margin-top:16px">
+        <a class="btn btn-primary" href="#pricing">View Packages <svg width="16" height="16"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn-ghost" href="#work">See Work</a>
+      </div>
+
+      <div class="hero-pills">
+        <span class="row" style="align-items:center"><svg width="16" height="16"><use href="#i-instagram"/></svg> Instagram</span>
+        <span class="row" style="align-items:center"><svg width="16" height="16"><use href="#i-facebook"/></svg> Facebook</span>
+        <span class="row" style="align-items:center"><svg width="16" height="16"><use href="#i-youtube"/></svg> YouTube</span>
+        <span class="row" style="align-items:center"><svg width="16" height="16"><use href="#i-twitterx"/></svg> X/Twitter</span>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="card pad">
+        <div class="reels">
+          <div class="reels-grid">
+            <!-- 9 tiles -->
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:03</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:04</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:05</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:06</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:07</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:08</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:09</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:10</div></div>
+            <div class="tile"><div class="grain"></div><div class="tile-time"><svg width="12" height="12"><use href="#i-play"/></svg> 0:11</div></div>
+          </div>
+          <span class="badge"><svg width="12" height="12"><use href="#i-sparkles"/></svg> Reels Preview</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services">
+      <!-- Service 1 -->
+      <div class="card pad service reveal">
+        <div class="iconwrap"><svg width="22" height="22"><use href="#i-sparkles"/></svg></div>
+        <h3>Social Media Management</h3>
+        <p>Strategy, calendars, captions, hashtags, publishing & replies — done for you.</p>
+        <ul class="ul">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Instagram • Facebook • YouTube • LinkedIn</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Creative calendars & posting</li>
+        </ul>
+      </div>
+      <!-- Service 2 -->
+      <div class="card pad service reveal">
+        <div class="iconwrap"><svg width="22" height="22"><use href="#i-image"/></svg></div>
+        <h3>Banner & Post Design</h3>
+        <p>Premium static posts, carousels, story sets, highlight covers and ad banners.</p>
+        <ul class="ul">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Brand-perfect templates</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Fast turnarounds</li>
+        </ul>
+      </div>
+      <!-- Service 3 -->
+      <div class="card pad service reveal">
+        <div class="iconwrap"><svg width="22" height="22"><use href="#i-play"/></svg></div>
+        <h3>Reels Editing</h3>
+        <p>Hook-based edits with captions, SFX, memes, and trending formats for retention.</p>
+        <ul class="ul">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Storyboarding & cuts</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Auto-captions & sound mix</li>
+        </ul>
+      </div>
+      <!-- Service 4 -->
+      <div class="card pad service reveal">
+        <div class="iconwrap"><svg width="22" height="22"><use href="#i-megaphone"/></svg></div>
+        <h3>Ad Creatives</h3>
+        <p>Static & video creatives tailored for conversions across Meta & YouTube.</p>
+        <ul class="ul">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> A/B variants</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Thumbnails that pop</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="row" style="align-items:end; justify-content:space-between; margin-bottom:12px">
+      <h2 style="margin:0">Selected Work</h2>
+      <a class="muted" href="#contact" style="font-weight:800; text-decoration:none">Need something similar?</a>
+    </div>
+    <div class="work-grid">
+      <div class="card pad reveal"><div class="work-tile">Carousel Series</div></div>
+      <div class="card pad reveal"><div class="work-tile">Festival Banner Set</div></div>
+      <div class="card pad reveal"><div class="work-tile">Reel Edits Pack</div></div>
+      <div class="card pad reveal"><div class="work-tile">YouTube Thumbnails</div></div>
+      <div class="card pad reveal"><div class="work-tile">Brand Grid Refresh</div></div>
+      <div class="card pad reveal"><div class="work-tile">Meta Ad Creatives</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="container">
+    <div class="card pad">
+      <div class="process">
+        <div class="step reveal">
+          <div class="num">1</div>
+          <h4>Discover</h4>
+          <p>Audit current presence, goals & audience.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">2</div>
+          <h4>Plan</h4>
+          <p>Content calendar, brand kit & hooks library.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">3</div>
+          <h4>Create</h4>
+          <p>Design, edit, caption, schedule — end to end.</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">4</div>
+          <h4>Grow</h4>
+          <p>Analyze weekly & iterate for reach + conversions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <h2 style="margin:0 0 16px 0">Packages</h2>
+    <div class="pricing">
+      <!-- Starter -->
+      <div class="plan reveal" data-plan="Starter">
+        <div class="plan-header">
+          <div>
+            <div style="font-weight:900; font-size:20px">Starter</div>
+            <div class="muted" style="font-size:14px">For new brands/testing waters</div>
+          </div>
+          <input class="plan-radio" type="radio" name="plan" aria-label="Select Starter plan" checked />
+        </div>
+        <div class="price">₹7,999/mo</div>
+        <ul class="ul">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 12 posts/month (static & carousel)</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 8 story designs/month</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 4 reels edit/month (footage from you)</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Hashtag & caption pack</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Monthly performance report</li>
+        </ul>
+        <a class="btn btn-primary space-top" href="#contact">Choose Starter</a>
+      </div>
+      <!-- Growth -->
+      <div class="plan reveal" data-plan="Growth">
+        <div class="plan-header">
+          <div>
+            <div style="font-weight:900; font-size:20px">Growth</div>
+            <div class="muted" style="font-size:14px">Best for consistent growth</div>
+          </div>
+          <input class="plan-radio" type="radio" name="plan" aria-label="Select Growth plan" />
+        </div>
+        <div class="price">₹14,999/mo</div>
+        <ul class="ul">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 20 posts/month</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 12 story designs/month</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 8 reels edit + thumbnail</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Monthly shoot planning support</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Weekly analytics & optimization</li>
+        </ul>
+        <a class="btn btn-primary space-top" href="#contact">Choose Growth</a>
+      </div>
+      <!-- Pro -->
+      <div class="plan reveal" data-plan="Pro">
+        <div class="plan-header">
+          <div>
+            <div style="font-weight:900; font-size:20px">Pro</div>
+            <div class="muted" style="font-size:14px">Aggressive scaling for D2C & local leaders</div>
+          </div>
+          <input class="plan-radio" type="radio" name="plan" aria-label="Select Pro plan" />
+        </div>
+        <div class="price">₹29,999/mo</div>
+        <ul class="ul">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 30 posts + 20 stories/month</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> 12 reels edit + 2 ad creatives/week</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Quarterly brand kit refresh</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Competitor & audience insights</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg> Priority support (same-day)</li>
+        </ul>
+        <a class="btn btn-primary space-top" href="#contact">Choose Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section>
+  <div class="container">
+    <div class="card pad cta-strip reveal">
+      <div>
+        <div style="font-weight:900; font-size:20px">Ready to hand off your social media?</div>
+        <div class="muted" style="font-size:14px">We’ll design posts, banners & high-retention reels while you focus on business.</div>
+      </div>
+      <div class="row">
+        <a class="btn btn-primary" href="https://wa.me/919552489841?text=Hi%20Team%20Digital%20Pranav%2C%20I%27m%20interested%20in%20social%20media%20management." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn-ghost" href="#contact">Book a Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container contact-grid">
+    <!-- Form -->
+    <div class="card pad reveal">
+      <h2 style="margin:0">Tell us about your brand</h2>
+      <div class="muted" style="font-size:14px; margin-top:4px">We reply within 1 business day.</div>
+
+      <form id="contactForm" class="grid" style="gap:12px; margin-top:16px">
+        <input class="input" name="name" placeholder="Your name" required />
+        <input class="input" type="email" name="email" placeholder="Email address" required />
+        <input class="input" name="phone" placeholder="Phone / WhatsApp" />
+        <select class="select" name="plan" id="planSelect">
+          <option>Starter</option>
+          <option>Growth</option>
+          <option>Pro</option>
+        </select>
+        <textarea class="textarea" name="message" rows="4" placeholder="What do you need? (e.g., 20 posts/month + 8 reels)" required></textarea>
+        <div class="row">
+          <button type="submit" class="btn btn-primary">Send via Email</button>
+          <a class="btn btn-ghost" target="_blank" rel="noopener"
+             href="https://wa.me/919552489841?text=Hi%20Team%20Digital%20Pranav%2C%20I%27m%20interested%20in%20social%20media%20management.">Ping on WhatsApp</a>
+        </div>
+      </form>
+    </div>
+    <!-- Contact card + FAQs -->
+    <div class="grid" style="gap:18px">
+      <div class="card pad reveal">
+        <div style="font-weight:900">Contact</div>
+        <div class="grid" style="gap:8px; margin-top:12px; font-size:14px">
+          <div class="row"><svg width="16" height="16"><use href="#i-phone"/></svg> +91 9552489841</div>
+          <div class="row"><svg width="16" height="16"><use href="#i-mail"/></svg> hello@digitalpranav.in</div>
+        </div>
+        <div class="row" style="margin-top:14px; font-size:14px">
+          <a class="row" style="text-decoration:underline" target="_blank" rel="noopener"
+             href="https://wa.me/919552489841?text=Hi%20Team%20Digital%20Pranav%2C%20I%27m%20interested%20in%20social%20media%20management.">
+             <svg width="16" height="16"><use href="#i-chevron-right"/></svg> WhatsApp
+          </a>
+          <a class="row" style="text-decoration:underline" href="#contact">
+            <svg width="16" height="16"><use href="#i-chevron-right"/></svg> Book a 15-min call
+          </a>
+        </div>
+      </div>
+
+      <div class="card pad reveal">
+        <div style="font-weight:900">FAQs</div>
+        <div style="margin-top:8px">
+          <details>
+            <summary>Do you also shoot content?</summary>
+            <p class="muted">We plan shoots and provide shot lists. On-site shoots are add-on services based on location.</p>
+          </details>
+          <details>
+            <summary>How fast is delivery?</summary>
+            <p class="muted">Static posts: 24-48h. Reels: 48-72h from receiving assets. Urgent turnarounds available.</p>
+          </details>
+          <details>
+            <summary>Which file formats do I get?</summary>
+            <p class="muted">Editable source files (PSD/Ai where applicable) plus ready-to-post MP4/JPG/PNG.</p>
+          </details>
+          <details>
+            <summary>What if I need custom plan?</summary>
+            <p class="muted">Ping us on WhatsApp with your monthly goals; we’ll tailor a plan within your budget.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="padding:22px 0; display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+    <div>© <span id="year"></span> Digital Pranav. All rights reserved.</div>
+    <div class="row">
+      <a href="#" style="text-decoration:none">Privacy</a>
+      <a href="#" style="text-decoration:none">Terms</a>
+      <a href="#" style="text-decoration:none">Brand Kit</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); observer.unobserve(e.target); } });
+  }, {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Pricing: selected outline sync with radios
+  function updateSelectedPlan(){
+    document.querySelectorAll('.plan').forEach(p => p.classList.remove('selected'));
+    const checked = document.querySelector('.plan-radio:checked');
+    if(!checked) return;
+    checked.closest('.plan').classList.add('selected');
+    // sync the select in the contact form
+    const name = checked.closest('.plan').dataset.plan;
+    const sel = document.getElementById('planSelect');
+    if(sel) sel.value = name;
+  }
+  document.querySelectorAll('.plan-radio').forEach(r => r.addEventListener('change', updateSelectedPlan));
+  updateSelectedPlan();
+
+  // Contact form -> mailto with encoded subject/body
+  const EMAIL_TO = "hello@digitalpranav.in";
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const subject = encodeURIComponent(`Project inquiry — ${data.get('name')}`);
+    const body = encodeURIComponent(
+`Name: ${data.get('name')}
+Email: ${data.get('email')}
+Phone: ${data.get('phone') || ''}
+Plan: ${data.get('plan')}
+Message:
+${data.get('message')}`
+    );
+    window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
+  });
+</script>
+</body>
+</html>
